@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Service
 public class EmployeeServiceImplementation implements EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
     public EmployeeServiceImplementation(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
