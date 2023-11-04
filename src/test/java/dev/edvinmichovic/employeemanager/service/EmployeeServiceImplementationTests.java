@@ -82,7 +82,6 @@ public class EmployeeServiceImplementationTests {
         List<Employee> employeeList = employeeServiceImplementation.findAllEmployees();
 
         assertThat(employeeList).isEmpty();
-        assertThat(employeeList.size()).isEqualTo(0);
     }
 
     @DisplayName("JUnit test for updateEmployee method")
@@ -94,7 +93,6 @@ public class EmployeeServiceImplementationTests {
 
         Employee updatedEmployee = employeeServiceImplementation.updateEmployee(employee);
 
-        // then - verify the output
         assertThat(updatedEmployee.getEmail()).isEqualTo("updatedEmail@gmail.com");
         assertThat(updatedEmployee.getName()).isEqualTo("Updated Name");
     }
