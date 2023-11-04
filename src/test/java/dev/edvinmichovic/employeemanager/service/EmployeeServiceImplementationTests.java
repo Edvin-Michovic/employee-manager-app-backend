@@ -42,15 +42,28 @@ public class EmployeeServiceImplementationTests {
                 .build();
     }
 
-    @DisplayName("JUnit test for addEmployee method")
+    @DisplayName("JUnit test for addEmployee method - when employeeCode is not defined")
     @Test
-    public void givenEmployeeObject_whenSaveEmployee_thenReturnEmployeeObject() {
+    public void givenEmployeeObjectWithoutEmployeeCode_whenSaveEmployee_thenReturnEmployeeObject() {
         given(employeeRepository.save(employee)).willReturn(employee);
 
         Employee savedEmployee = employeeServiceImplementation.addEmployee(employee);
 
         assertThat(savedEmployee).isNotNull();
         assertThat(savedEmployee.getEmployeeCode()).isNotNull();
+        verify(employeeRepository, times(1)).save(employee);
+    }
+
+    @DisplayName("JUnit test for addEmployee method - when employeeCode is defined")
+    @Test
+    public void givenEmployeeObjectWithEmployeeCode_whenSaveEmployee_thenReturnEmployeeObject() {
+        employee.setEmployeeCode("Test");
+        given(employeeRepository.save(employee)).willReturn(employee);
+
+        Employee savedEmployee = employeeServiceImplementation.addEmployee(employee);
+
+        assertThat(savedEmployee).isNotNull();
+        assertThat(savedEmployee.getEmployeeCode()).isEqualTo("Test");
         verify(employeeRepository, times(1)).save(employee);
     }
 

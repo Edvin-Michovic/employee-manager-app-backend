@@ -19,7 +19,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
     @Override
     public Employee addEmployee(Employee employee) {
-        employee.setEmployeeCode(UUID.randomUUID().toString());
+        if (employee.getEmployeeCode() == null) employee.setEmployeeCode(UUID.randomUUID().toString());
         return employeeRepository.save(employee);
     }
 
